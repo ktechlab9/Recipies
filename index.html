@@ -1,70 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delicious Recipes</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Hearthside Kitchen</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">🍴 Delicious Recipes</div>
-        <nav>
-            <input type="text" id="searchInput" placeholder="Search recipes...">
-            <select id="categoryFilter">
-                <option value="All">All Categories</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Dessert">Dessert</option>
-            </select>
-        </nav>
-    </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <h1>Discover Delicious Recipes</h1>
-        <p>Cook, enjoy, and share amazing meals!</p>
-    </section>
-     <!-- Recipes Section1 -->
-    <section id="recipes">
-        <h2>Our Top Recipes</h2>
-        <div class="recipe-grid">
-            <div class="recipe-card">
-                <img src="images/pasta.jpg" alt="Pasta">
-                <h3>Creamy Pasta</h3>
-                <p>A rich and creamy pasta recipe perfect for dinner.</p>
-                <button onclick="viewRecipe('Creamy Pasta')">View Recipe</button>
-            </div>
-            <div class="recipe-card">
-                <img src="images/pancakes.jpg" alt="Pancakes">
-                <h3>Fluffy Pancakes</h3>
-                <p>Start your day with light and fluffy pancakes.</p>
-                <button onclick="viewRecipe('Fluffy Pancakes')">View Recipe</button>
-            </div>
-            <div class="recipe-card">
-                <img src="images/salad.jpg" alt="Salad">
-                <h3>Fresh Salad</h3>
-                <p>A healthy salad packed with nutrients and flavor.</p>
-                <button onclick="viewRecipe('Fresh Salad')">View Recipe</button>
-            </div>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">🍳 The Hearthside Kitchen</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-texture"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Made with love, shared from the heart</p>
+      <h1 class="hero-title">Cooking that feels<br/><em>like coming home</em></h1>
+      <p class="hero-sub">Simple, hearty recipes for everyday cooks. No fuss — just good food.</p>
+      <a href="recipes.html" class="btn-primary">Browse Recipes</a>
+    </div>
+    <div class="hero-illustration">
+      <div class="pot-graphic">🫕</div>
+    </div>
+  </header>
+
+  <!-- CATEGORIES -->
+  <section class="categories section">
+    <h2 class="section-title">What are you cooking today?</h2>
+    <div class="category-grid">
+      <a href="recipes.html?cat=breakfast" class="cat-card">
+        <span class="cat-icon">🥞</span>
+        <span class="cat-label">Breakfast</span>
+      </a>
+      <a href="recipes.html?cat=soups" class="cat-card">
+        <span class="cat-icon">🍲</span>
+        <span class="cat-label">Soups & Stews</span>
+      </a>
+      <a href="recipes.html?cat=mains" class="cat-card">
+        <span class="cat-icon">🍗</span>
+        <span class="cat-label">Mains</span>
+      </a>
+      <a href="recipes.html?cat=sides" class="cat-card">
+        <span class="cat-icon">🥗</span>
+        <span class="cat-label">Sides & Salads</span>
+      </a>
+      <a href="recipes.html?cat=baking" class="cat-card">
+        <span class="cat-icon">🍞</span>
+        <span class="cat-label">Baking</span>
+      </a>
+      <a href="recipes.html?cat=desserts" class="cat-card">
+        <span class="cat-icon">🍮</span>
+        <span class="cat-label">Desserts</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURED RECIPES -->
+  <section class="featured section">
+    <div class="section-header">
+      <h2 class="section-title">Featured Recipes</h2>
+      <a href="recipes.html" class="see-all">See all →</a>
+    </div>
+    <div class="recipe-grid">
+      <a href="recipe.html?id=1" class="recipe-card">
+        <div class="recipe-img" style="background:#c8956c;">🍋</div>
+        <div class="recipe-info">
+          <span class="recipe-tag">Baking</span>
+          <h3>Grandma's Lemon Pound Cake</h3>
+          <p>Dense, buttery, and kissed with bright citrus glaze. A true Sunday staple.</p>
+          <div class="recipe-meta">
+            <span>⏱ 1h 20m</span>
+            <span>👤 8 servings</span>
+          </div>
         </div>
-    </section>
-
-    <!-- Recipes Section -->
-    <section id="recipes">
-        <div id="recipe-grid" class="recipe-grid">
-            <!-- Recipes will be loaded here dynamically -->
+      </a>
+      <a href="recipe.html?id=2" class="recipe-card">
+        <div class="recipe-img" style="background:#8b5e3c;">🍲</div>
+        <div class="recipe-info">
+          <span class="recipe-tag">Soups & Stews</span>
+          <h3>Rustic Beef & Vegetable Stew</h3>
+          <p>Slow-cooked until the beef falls apart. Best served with crusty bread.</p>
+          <div class="recipe-meta">
+            <span>⏱ 2h 30m</span>
+            <span>👤 6 servings</span>
+          </div>
         </div>
-    </section>
+      </a>
+      <a href="recipe.html?id=3" class="recipe-card">
+        <div class="recipe-img" style="background:#d4a853;">🥞</div>
+        <div class="recipe-info">
+          <span class="recipe-tag">Breakfast</span>
+          <h3>Fluffy Buttermilk Pancakes</h3>
+          <p>Cloud-like and golden. Stack them high with maple syrup and berries.</p>
+          <div class="recipe-meta">
+            <span>⏱ 25m</span>
+            <span>👤 4 servings</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Delicious Recipes. All rights reserved.</p>
-    </footer>
+  <!-- QUOTE BANNER -->
+  <section class="quote-banner">
+    <blockquote>
+      "The secret ingredient is always a little extra love."
+    </blockquote>
+  </section>
 
-    <script src="main.js"></script>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>🍳 <strong>The Hearthside Kitchen</strong> — Recipes for real life.</p>
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="recipes.html">Recipes</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
 </body>
 </html>

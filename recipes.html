@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Recipes — The Hearthside Kitchen</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">🍳 The Hearthside Kitchen</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="recipes.html" class="active">Recipes</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="recipes-header">
+    <h1>All Recipes</h1>
+    <p>Browse our collection of hearty, homestyle dishes for every occasion.</p>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search recipes…" oninput="filterRecipes()" />
+    </div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+      <button class="filter-btn" onclick="setFilter('breakfast', this)">🥞 Breakfast</button>
+      <button class="filter-btn" onclick="setFilter('soups', this)">🍲 Soups & Stews</button>
+      <button class="filter-btn" onclick="setFilter('mains', this)">🍗 Mains</button>
+      <button class="filter-btn" onclick="setFilter('sides', this)">🥗 Sides & Salads</button>
+      <button class="filter-btn" onclick="setFilter('baking', this)">🍞 Baking</button>
+      <button class="filter-btn" onclick="setFilter('desserts', this)">🍮 Desserts</button>
+    </div>
+  </header>
+
+  <main class="recipes-listing">
+    <div class="recipe-grid" id="recipeGrid"></div>
+    <p id="noResults" style="display:none;text-align:center;color:var(--muted);padding:3rem 0;font-style:italic;">
+      No recipes found. Try a different search!
+    </p>
+  </main>
+
+  <footer class="footer">
+    <p>🍳 <strong>The Hearthside Kitchen</strong> — Recipes for real life.</p>
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="recipes.html">Recipes</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
+  <script>
+    const RECIPES = [
+      { id:1,  title:"Grandma's Lemon Pound Cake",      cat:"baking",    icon:"🍋", bg:"#c8956c", time:"1h 20m", servings:8,  desc:"Dense, buttery, and kissed with bright citrus glaze. A true Sunday staple." },
+      { id:2,  title:"Rustic Beef & Vegetable Stew",    cat:"soups",     icon:"🍲", bg:"#8b5e3c", time:"2h 30m", servings:6,  desc:"Slow-cooked until the beef falls apart. Best served with crusty bread." },
+      { id:3,  title:"Fluffy Buttermilk Pancakes",      cat:"breakfast", icon:"🥞", bg:"#d4a853", time:"25m",    servings:4,  desc:"Cloud-like and golden. Stack them high with maple syrup and berries." },
+      { id:4,  title:"Roasted Garlic Chicken",          cat:"mains",     icon:"🍗", bg:"#b5522b", time:"1h 10m", servings:4,  desc:"Crispy skin, juicy meat, and a fragrant garlic-herb butter rubbed under the skin." },
+      { id:5,  title:"Creamy Tomato Basil Soup",        cat:"soups",     icon:"🍅", bg:"#c0392b", time:"45m",    servings:4,  desc:"Silky smooth, deeply flavoured, and finished with a swirl of cream." },
+      { id:6,  title:"Honey Cornbread",                 cat:"baking",    icon:"🍞", bg:"#d4a853", time:"35m",    servings:9,  desc:"Golden and slightly sweet. The perfect sidekick for chilli or soup." },
+      { id:7,  title:"Classic Caesar Salad",            cat:"sides",     icon:"🥗", bg:"#5a7a4a", time:"20m",    servings:4,  desc:"Crisp romaine, house-made croutons, shaved parmesan, and anchovy dressing." },
+      { id:8,  title:"Apple Cinnamon Oatmeal",         cat:"breakfast", icon:"🍎", bg:"#c0392b", time:"15m",    servings:2,  desc:"Warm, comforting, and filling. A wholesome start to any morning." },
+      { id:9,  title:"Sticky Toffee Pudding",           cat:"desserts",  icon:"🍮", bg:"#8b5e3c", time:"1h",     servings:8,  desc:"Moist sponge soaked in rich toffee sauce. The ultimate British comfort dessert." },
+      { id:10, title:"Shakshuka",                       cat:"breakfast", icon:"🍳", bg:"#b5522b", time:"30m",    servings:4,  desc:"Eggs poached in a spiced tomato and pepper sauce. One-pan perfection." },
+      { id:11, title:"Braised Short Ribs",              cat:"mains",     icon:"🥩", bg:"#6b3a2a", time:"3h",     servings:4,  desc:"Fall-off-the-bone tender with a rich red wine and herb sauce." },
+      { id:12, title:"Roasted Root Vegetables",        cat:"sides",     icon:"🥕", bg:"#c07830", time:"50m",    servings:6,  desc:"Carrots, parsnips, and beets caramelised to perfection with rosemary and olive oil." },
+    ];
+
+    let activeFilter = 'all';
+
+    function renderRecipes() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const grid  = document.getElementById('recipeGrid');
+      const none  = document.getElementById('noResults');
+      const filtered = RECIPES.filter(r => {
+        const matchCat = activeFilter === 'all' || r.cat === activeFilter;
+        const matchQ   = r.title.toLowerCase().includes(query) || r.desc.toLowerCase().includes(query);
+        return matchCat && matchQ;
+      });
+      grid.innerHTML = filtered.map(r => `
+        <a href="recipe.html?id=${r.id}" class="recipe-card">
+          <div class="recipe-img" style="background:${r.bg};">${r.icon}</div>
+          <div class="recipe-info">
+            <span class="recipe-tag">${catLabel(r.cat)}</span>
+            <h3>${r.title}</h3>
+            <p>${r.desc}</p>
+            <div class="recipe-meta">
+              <span>⏱ ${r.time}</span>
+              <span>👤 ${r.servings} servings</span>
+            </div>
+          </div>
+        </a>
+      `).join('');
+      none.style.display = filtered.length ? 'none' : 'block';
+    }
+
+    function catLabel(cat) {
+      const map = { breakfast:'Breakfast', soups:'Soups & Stews', mains:'Mains', sides:'Sides & Salads', baking:'Baking', desserts:'Desserts' };
+      return map[cat] || cat;
+    }
+
+    function setFilter(cat, btn) {
+      activeFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderRecipes();
+    }
+
+    function filterRecipes() { renderRecipes(); }
+
+    // On load, check URL param
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlCat = urlParams.get('cat');
+    if (urlCat) {
+      activeFilter = urlCat;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        if (b.textContent.toLowerCase().includes(urlCat)) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+    }
+    renderRecipes();
+  </script>
+</body>
+</html>

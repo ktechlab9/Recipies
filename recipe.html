@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recipe — The Hearthside Kitchen</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">🍳 The Hearthside Kitchen</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="recipes.html" class="active">Recipes</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="recipeContent"></div>
+
+  <footer class="footer">
+    <p>🍳 <strong>The Hearthside Kitchen</strong> — Recipes for real life.</p>
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="recipes.html">Recipes</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
+  <script>
+    const RECIPES = {
+      1: {
+        title: "Grandma's Lemon Pound Cake",
+        cat: "Baking",
+        icon: "🍋",
+        bg: "#c8956c",
+        time: "1h 20m",
+        prep: "20 mins",
+        cook: "1 hour",
+        servings: 8,
+        difficulty: "Easy",
+        intro: "Dense, buttery, and kissed with bright lemon glaze — this is the cake that made every family gathering feel special. Simple ingredients, extraordinary results.",
+        ingredients: [
+          "250g unsalted butter, softened",
+          "300g caster sugar",
+          "4 large eggs",
+          "Zest of 2 lemons",
+          "2 tbsp fresh lemon juice",
+          "300g all-purpose flour",
+          "1 tsp baking powder",
+          "½ tsp salt",
+          "120ml whole milk",
+          "150g icing sugar (for glaze)",
+          "2–3 tbsp lemon juice (for glaze)",
+        ],
+        steps: [
+          { title: "Preheat & Prep", text: "Preheat your oven to 175°C (350°F). Grease and flour a 23×13cm loaf tin, then line the base with parchment paper." },
+          { title: "Cream Butter & Sugar", text: "In a large bowl, beat the softened butter and sugar together for 4–5 minutes until pale and fluffy. Don't rush this step — it creates the tender crumb." },
+          { title: "Add Eggs & Lemon", text: "Beat in the eggs one at a time, ensuring each is fully incorporated before adding the next. Stir in the lemon zest and juice." },
+          { title: "Fold in Flour", text: "Sift the flour, baking powder, and salt together. Gently fold into the butter mixture in three additions, alternating with the milk. Mix until just combined — do not overbeat." },
+          { title: "Bake", text: "Pour the batter into the prepared tin and smooth the top. Bake for 55–65 minutes, or until a skewer inserted in the centre comes out clean. If the top browns too quickly, cover loosely with foil." },
+          { title: "Cool & Glaze", text: "Leave the cake to cool in the tin for 15 minutes, then turn out onto a wire rack. Mix icing sugar with lemon juice until smooth, then drizzle over the warm cake. Allow to set before slicing." },
+        ],
+      },
+      2: {
+        title: "Rustic Beef & Vegetable Stew",
+        cat: "Soups & Stews",
+        icon: "🍲",
+        bg: "#8b5e3c",
+        time: "2h 30m",
+        prep: "20 mins",
+        cook: "2 hours 10 mins",
+        servings: 6,
+        difficulty: "Medium",
+        intro: "A slow-cooked stew that fills your kitchen with the most comforting aroma. Tender beef, hearty vegetables, and a rich broth — best enjoyed with thick crusty bread.",
+        ingredients: [
+          "1kg beef chuck, cut into 4cm cubes",
+          "3 tbsp olive oil",
+          "1 large onion, roughly chopped",
+          "3 garlic cloves, minced",
+          "3 carrots, cut into chunks",
+          "3 celery stalks, sliced",
+          "3 medium potatoes, cubed",
+          "400g tinned diced tomatoes",
+          "500ml beef stock",
+          "250ml red wine",
+          "2 tbsp tomato paste",
+          "2 sprigs fresh rosemary",
+          "3 sprigs fresh thyme",
+          "Salt and freshly cracked pepper",
+          "2 tbsp plain flour",
+        ],
+        steps: [
+          { title: "Brown the Beef", text: "Season beef cubes generously with salt and pepper, then dust lightly with flour. Heat 2 tbsp oil in a large heavy pot over high heat. Brown the beef in batches — don't crowd the pan. Set aside." },
+          { title: "Sauté the Aromatics", text: "Reduce heat to medium. Add remaining oil and cook the onion for 5 minutes until softened. Add garlic and tomato paste, cooking for 1 more minute." },
+          { title: "Deglaze", text: "Pour in the red wine and scrape up any browned bits from the bottom of the pot — this is pure flavour. Let it bubble for 2–3 minutes." },
+          { title: "Build the Stew", text: "Return the beef to the pot. Add the tinned tomatoes, beef stock, rosemary, and thyme. Bring to a boil, then reduce to a low simmer." },
+          { title: "Slow Cook", text: "Cover and cook on low heat for 1 hour 30 minutes, stirring occasionally. Add the carrots, celery, and potatoes and continue cooking for a further 30–40 minutes until everything is tender." },
+          { title: "Season & Serve", text: "Remove the herb sprigs. Taste and adjust seasoning. For a thicker stew, mash a few potato chunks against the side of the pot. Serve in deep bowls with crusty bread." },
+        ],
+      },
+      3: {
+        title: "Fluffy Buttermilk Pancakes",
+        cat: "Breakfast",
+        icon: "🥞",
+        bg: "#d4a853",
+        time: "25m",
+        prep: "10 mins",
+        cook: "15 mins",
+        servings: 4,
+        difficulty: "Easy",
+        intro: "The secret to cloud-like pancakes is buttermilk and rested batter. Don't rush them — cook low and slow and they'll reward you with the fluffiest stack imaginable.",
+        ingredients: [
+          "240g all-purpose flour",
+          "2 tbsp sugar",
+          "2 tsp baking powder",
+          "½ tsp baking soda",
+          "½ tsp salt",
+          "480ml buttermilk",
+          "2 large eggs",
+          "60g unsalted butter, melted",
+          "1 tsp vanilla extract",
+          "Butter or oil for the pan",
+          "Maple syrup and fresh berries to serve",
+        ],
+        steps: [
+          { title: "Mix Dry Ingredients", text: "Whisk together flour, sugar, baking powder, baking soda, and salt in a large bowl. Make a well in the centre." },
+          { title: "Mix Wet Ingredients", text: "In a separate jug, whisk together the buttermilk, eggs, melted butter, and vanilla extract." },
+          { title: "Combine", text: "Pour the wet ingredients into the dry and stir gently until just combined. The batter will be lumpy — that's exactly right. Do not overmix. Let the batter rest for 5 minutes." },
+          { title: "Cook the Pancakes", text: "Heat a non-stick pan or griddle over medium-low heat. Lightly grease with butter. Pour about 80ml of batter per pancake. Cook until bubbles form on the surface and the edges look set, about 2–3 minutes." },
+          { title: "Flip & Finish", text: "Flip once and cook for another 1–2 minutes until golden on the other side. Keep cooked pancakes warm in a low oven while you finish the batch." },
+          { title: "Serve", text: "Stack high and serve immediately with maple syrup, fresh berries, and a pat of butter." },
+        ],
+      },
+    };
+
+    const id = new URLSearchParams(window.location.search).get('id') || 1;
+    const recipe = RECIPES[id] || RECIPES[1];
+
+    document.title = `${recipe.title} — The Hearthside Kitchen`;
+
+    document.getElementById('recipeContent').innerHTML = `
+      <header class="recipe-hero">
+        <div class="recipe-hero-inner">
+          <div style="font-size:3.5rem;margin-bottom:1rem;">${recipe.icon}</div>
+          <span class="recipe-tag">${recipe.cat}</span>
+          <h1>${recipe.title}</h1>
+          <p class="intro">${recipe.intro}</p>
+          <div class="recipe-stats">
+            <div class="stat"><span class="stat-label">Prep Time</span><span class="stat-value">${recipe.prep}</span></div>
+            <div class="stat"><span class="stat-label">Cook Time</span><span class="stat-value">${recipe.cook}</span></div>
+            <div class="stat"><span class="stat-label">Servings</span><span class="stat-value">${recipe.servings}</span></div>
+            <div class="stat"><span class="stat-label">Difficulty</span><span class="stat-value">${recipe.difficulty}</span></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="recipe-body">
+        <aside class="ingredients-box">
+          <h2>Ingredients</h2>
+          <ul class="ingredient-list">
+            ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
+          </ul>
+        </aside>
+
+        <section class="instructions">
+          <h2>Instructions</h2>
+          ${recipe.steps.map((s,i) => `
+            <div class="step">
+              <div class="step-num">${i+1}</div>
+              <div>
+                <strong style="font-family:var(--font-display);color:var(--brown);display:block;margin-bottom:0.3rem;">${s.title}</strong>
+                <p class="step-text">${s.text}</p>
+              </div>
+            </div>
+          `).join('')}
+          <div style="margin-top:3rem;padding:1.5rem;background:var(--parchment);border-radius:8px;border-left:4px solid var(--rust);">
+            <strong style="font-family:var(--font-display);color:var(--brown);">💡 Cook's Tip</strong>
+            <p style="font-size:0.9rem;color:var(--muted);margin-top:0.4rem;">Every oven and stove is different. Trust your senses — smell, colour, and texture will tell you as much as a timer will.</p>
+          </div>
+        </section>
+      </div>
+
+      <div style="text-align:center;padding:2rem;background:var(--parchment);border-top:2px solid var(--tan);">
+        <a href="recipes.html" class="btn-secondary">← Back to all recipes</a>
+      </div>
+    `;
+  </script>
+</body>
+</html>
